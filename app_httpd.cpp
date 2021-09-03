@@ -20,9 +20,7 @@
 
 #include "fb_gfx.h"
 #include "fd_forward.h"
-//#include "dl_lib.h"
 #include "fr_forward.h"
-#include "analogWrite.h"
 
 #define ENROLL_CONFIRM_TIMES 5
 #define FACE_ID_SAVE_NUMBER 7
@@ -35,15 +33,6 @@
 #define FACE_COLOR_YELLOW (FACE_COLOR_RED | FACE_COLOR_GREEN)
 #define FACE_COLOR_CYAN   (FACE_COLOR_BLUE | FACE_COLOR_GREEN)
 #define FACE_COLOR_PURPLE (FACE_COLOR_BLUE | FACE_COLOR_RED)
-
-// GPIO Setting
-extern int gpLb; //D4, Left Wheel Back
-extern int gpLf; //D3, Left Wheel Forward
-extern int gpRb; //D2, Right Wheel Back
-extern int gpRf; //D1, Right Wheel Forward
-extern int led; //D2, Right Wheel Forward
-
-unsigned long last_move_millis;
 
 typedef struct {
         size_t size; //number of values used for filtering
@@ -73,10 +62,18 @@ static int8_t recognition_enabled = 0;
 static int8_t is_enrolling = 0;
 static face_id_list id_list = {0};
 
+static ra_filter_t * ra_filter_init(ra_filter_t * filter, size_t sample_size){
+    memset(filter, 0, sizeof(ra_filter_t));
 
+    filter->values = (int *)malloc(sample_size * sizeof(int));
+    if(!filter->values){
+        return NULL;
+    }
+    memset(filter->values, 0, sample_size * sizeof(int));
 
-
-
+    filter->size = sample_size;
+    return filter;
+}
 
 static int ra_filter_run(ra_filter_t * filter, int value){
     if(!filter->values){
@@ -128,9 +125,83 @@ static int rgb_printf(dl_matrix3du_t *image_matrix, uint32_t color, const char *
     return len;
 }
 
+static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, int face_id){
+    int x, y, w, h, i;
+    uint32_t color = FACE_COLOR_YELLOW;
+    if(face_id < 0){
+        color = FACE_COLOR_RED;
+    } else if(face_id > 0){
+        color = FACE_COLOR_GREEN;
+    }
+    fb_data_t fb;
+    fb.width = image_matrix->w;
+    fb.height = image_matrix->h;
+    fb.data = image_matrix->item;
+    fb.bytes_per_pixel = 3;
+    fb.format = FB_BGR888;
+    for (i = 0; i < boxes->len; i++){
+        // rectangle box
+        x = (int)boxes->box[i].box_p[0];
+        y = (int)boxes->box[i].box_p[1];
+        w = (int)boxes->box[i].box_p[2] - x + 1;
+        h = (int)boxes->box[i].box_p[3] - y + 1;
+        fb_gfx_drawFastHLine(&fb, x, y, w, color);
+        fb_gfx_drawFastHLine(&fb, x, y+h-1, w, color);
+        fb_gfx_drawFastVLine(&fb, x, y, h, color);
+        fb_gfx_drawFastVLine(&fb, x+w-1, y, h, color);
+#if 0
+        // landmark
+        int x0, y0, j;
+        for (j = 0; j < 10; j+=2) {
+            x0 = (int)boxes->landmark[i].landmark_p[j];
+            y0 = (int)boxes->landmark[i].landmark_p[j+1];
+            fb_gfx_fillRect(&fb, x0, y0, 3, 3, color);
+        }
+#endif
+    }
+}
 
+static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_boxes){
+    dl_matrix3du_t *aligned_face = NULL;
+    int matched_id = 0;
 
+    aligned_face = dl_matrix3du_alloc(1, FACE_WIDTH, FACE_HEIGHT, 3);
+    if(!aligned_face){
+        Serial.println("Could not allocate face recognition buffer");
+        return matched_id;
+    }
+    if (align_face(net_boxes, image_matrix, aligned_face) == ESP_OK){
+        if (is_enrolling == 1){
+            int8_t left_sample_face = enroll_face(&id_list, aligned_face);
 
+            if(left_sample_face == (ENROLL_CONFIRM_TIMES - 1)){
+                Serial.printf("Enrolling Face ID: %d\n", id_list.tail);
+            }
+            Serial.printf("Enrolling Face ID: %d sample %d\n", id_list.tail, ENROLL_CONFIRM_TIMES - left_sample_face);
+            rgb_printf(image_matrix, FACE_COLOR_CYAN, "ID[%u] Sample[%u]", id_list.tail, ENROLL_CONFIRM_TIMES - left_sample_face);
+            if (left_sample_face == 0){
+                is_enrolling = 0;
+                Serial.printf("Enrolled Face ID: %d\n", id_list.tail);
+            }
+        } else {
+            matched_id = recognize_face(&id_list, aligned_face);
+            if (matched_id >= 0) {
+                Serial.printf("Match Face ID: %u\n", matched_id);
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %u", matched_id);
+            } else {
+                Serial.println("No Match Found");
+                rgb_print(image_matrix, FACE_COLOR_RED, "Intruder Alert!");
+                matched_id = -1;
+            }
+        }
+    } else {
+        Serial.println("Face Not Aligned");
+        //rgb_print(image_matrix, FACE_COLOR_YELLOW, "Human Detected");
+    }
+
+    dl_matrix3du_free(aligned_face);
+    return matched_id;
+}
 
 static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size_t len){
     jpg_chunking_t *j = (jpg_chunking_t *)arg;
@@ -158,6 +229,7 @@ static esp_err_t capture_handler(httpd_req_t *req){
 
     httpd_resp_set_type(req, "image/jpeg");
     httpd_resp_set_hdr(req, "Content-Disposition", "inline; filename=capture.jpg");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
 
     size_t out_len, out_width, out_height;
     uint8_t * out_buf;
@@ -208,9 +280,10 @@ static esp_err_t capture_handler(httpd_req_t *req){
     if (net_boxes){
         detected = true;
         if(recognition_enabled){
-            //face_id = run_face_recognition(image_matrix, net_boxes);
+            face_id = run_face_recognition(image_matrix, net_boxes);
         }
-      // draw_face_boxes(image_matrix, net_boxes, face_id);
+        draw_face_boxes(image_matrix, net_boxes, face_id);
+        free(net_boxes->score);
         free(net_boxes->box);
         free(net_boxes->landmark);
         free(net_boxes);
@@ -253,6 +326,8 @@ static esp_err_t stream_handler(httpd_req_t *req){
     if(res != ESP_OK){
         return res;
     }
+
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
 
     while(true){
         detected = false;
@@ -303,10 +378,11 @@ static esp_err_t stream_handler(httpd_req_t *req){
                             if(net_boxes){
                                 detected = true;
                                 if(recognition_enabled){
-                                   // face_id = run_face_recognition(image_matrix, net_boxes);
+                                    face_id = run_face_recognition(image_matrix, net_boxes);
                                 }
                                 fr_recognize = esp_timer_get_time();
-                                //draw_face_boxes(image_matrix, net_boxes, face_id);
+                                draw_face_boxes(image_matrix, net_boxes, face_id);
+                                free(net_boxes->score);
                                 free(net_boxes->box);
                                 free(net_boxes->landmark);
                                 free(net_boxes);
@@ -416,19 +492,38 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     else if(!strcmp(variable, "contrast")) res = s->set_contrast(s, val);
     else if(!strcmp(variable, "brightness")) res = s->set_brightness(s, val);
     else if(!strcmp(variable, "saturation")) res = s->set_saturation(s, val);
-   
+    else if(!strcmp(variable, "gainceiling")) res = s->set_gainceiling(s, (gainceiling_t)val);
+    else if(!strcmp(variable, "colorbar")) res = s->set_colorbar(s, val);
     else if(!strcmp(variable, "awb")) res = s->set_whitebal(s, val);
     else if(!strcmp(variable, "agc")) res = s->set_gain_ctrl(s, val);
-   
+    else if(!strcmp(variable, "aec")) res = s->set_exposure_ctrl(s, val);
+    else if(!strcmp(variable, "hmirror")) res = s->set_hmirror(s, val);
+    else if(!strcmp(variable, "vflip")) res = s->set_vflip(s, val);
     else if(!strcmp(variable, "awb_gain")) res = s->set_awb_gain(s, val);
     else if(!strcmp(variable, "agc_gain")) res = s->set_agc_gain(s, val);
     else if(!strcmp(variable, "aec_value")) res = s->set_aec_value(s, val);
     else if(!strcmp(variable, "aec2")) res = s->set_aec2(s, val);
-   
+    else if(!strcmp(variable, "dcw")) res = s->set_dcw(s, val);
     else if(!strcmp(variable, "bpc")) res = s->set_bpc(s, val);
     else if(!strcmp(variable, "wpc")) res = s->set_wpc(s, val);
     else if(!strcmp(variable, "raw_gma")) res = s->set_raw_gma(s, val);
-   
+    else if(!strcmp(variable, "lenc")) res = s->set_lenc(s, val);
+    else if(!strcmp(variable, "special_effect")) res = s->set_special_effect(s, val);
+    else if(!strcmp(variable, "wb_mode")) res = s->set_wb_mode(s, val);
+    else if(!strcmp(variable, "ae_level")) res = s->set_ae_level(s, val);
+    else if(!strcmp(variable, "face_detect")) {
+        detection_enabled = val;
+        if(!detection_enabled) {
+            recognition_enabled = 0;
+        }
+    }
+    else if(!strcmp(variable, "face_enroll")) is_enrolling = val;
+    else if(!strcmp(variable, "face_recognize")) {
+        recognition_enabled = val;
+        if(recognition_enabled){
+            detection_enabled = val;
+        }
+    }
     else {
         res = -1;
     }
@@ -453,13 +548,29 @@ static esp_err_t status_handler(httpd_req_t *req){
     p+=sprintf(p, "\"brightness\":%d,", s->status.brightness);
     p+=sprintf(p, "\"contrast\":%d,", s->status.contrast);
     p+=sprintf(p, "\"saturation\":%d,", s->status.saturation);
+    p+=sprintf(p, "\"sharpness\":%d,", s->status.sharpness);
+    p+=sprintf(p, "\"special_effect\":%u,", s->status.special_effect);
+    p+=sprintf(p, "\"wb_mode\":%u,", s->status.wb_mode);
     p+=sprintf(p, "\"awb\":%u,", s->status.awb);
     p+=sprintf(p, "\"awb_gain\":%u,", s->status.awb_gain);
+    p+=sprintf(p, "\"aec\":%u,", s->status.aec);
+    p+=sprintf(p, "\"aec2\":%u,", s->status.aec2);
+    p+=sprintf(p, "\"ae_level\":%d,", s->status.ae_level);
+    p+=sprintf(p, "\"aec_value\":%u,", s->status.aec_value);
     p+=sprintf(p, "\"agc\":%u,", s->status.agc);
+    p+=sprintf(p, "\"agc_gain\":%u,", s->status.agc_gain);
+    p+=sprintf(p, "\"gainceiling\":%u,", s->status.gainceiling);
     p+=sprintf(p, "\"bpc\":%u,", s->status.bpc);
     p+=sprintf(p, "\"wpc\":%u,", s->status.wpc);
     p+=sprintf(p, "\"raw_gma\":%u,", s->status.raw_gma);
-   
+    p+=sprintf(p, "\"lenc\":%u,", s->status.lenc);
+    p+=sprintf(p, "\"vflip\":%u,", s->status.vflip);
+    p+=sprintf(p, "\"hmirror\":%u,", s->status.hmirror);
+    p+=sprintf(p, "\"dcw\":%u,", s->status.dcw);
+    p+=sprintf(p, "\"colorbar\":%u,", s->status.colorbar);
+    p+=sprintf(p, "\"face_detect\":%u,", detection_enabled);
+    p+=sprintf(p, "\"face_enroll\":%u,", is_enrolling);
+    p+=sprintf(p, "\"face_recognize\":%u", recognition_enabled);
     *p++ = '}';
     *p++ = 0;
     httpd_resp_set_type(req, "application/json");
@@ -475,163 +586,6 @@ static esp_err_t index_handler(httpd_req_t *req){
         return httpd_resp_send(req, (const char *)index_ov3660_html_gz, index_ov3660_html_gz_len);
     }
     return httpd_resp_send(req, (const char *)index_ov2640_html_gz, index_ov2640_html_gz_len);
-}
-
-void WheelAct(int nLf, int nLb, int nRf, int nRb)
-{
-// GPIO Setting
-//int gpLb = 14; //D4, Left Wheel Back
-//int gpLf = 15; //D3, Left Wheel Forward
-//int gpRb = 13; //D2, Right Wheel Back (d2 or pin4 is led)
-//int gpRf = 12; //D1, Right Wheel Forward
-
- digitalWrite(gpLf, nLf);
- digitalWrite(gpLb, nLb);
- digitalWrite(gpRf, nRf);
- digitalWrite(gpRb, nRb);
-}
-
-static esp_err_t car_handler(httpd_req_t *req){
-    //return httpd_resp_send(req, (const char *)index_ov2640_html_gz, index_ov2640_html_gz_len);
-    
-    char*  buf;
-    size_t buf_len;
-    char variable[32] = {0,};
-    char value[32] = {0,};
-
-    buf_len = httpd_req_get_url_query_len(req) + 1;
-    if (buf_len > 1) {
-        buf = (char*)malloc(buf_len);
-        if(!buf){
-            httpd_resp_send_500(req);
-            return ESP_FAIL;
-        }
-        if (httpd_req_get_url_query_str(req, buf, buf_len) == ESP_OK) {
-            if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) == ESP_OK &&
-                httpd_query_key_value(buf, "val", value, sizeof(value)) == ESP_OK) {
-            } else {
-                free(buf);
-                httpd_resp_send_404(req);
-                return ESP_FAIL;
-            }
-        } else {
-            free(buf);
-            httpd_resp_send_404(req);
-            return ESP_FAIL;
-        }
-        free(buf);
-    } else {
-        httpd_resp_send_404(req);
-        return ESP_FAIL;
-    }
-
-    //if(!strcmp(variable, "agc")) res = s->set_gain_ctrl(s, val);
-    Serial.printf(value);
-    Serial.printf(variable);
-    if(!strcmp(variable, "move"))
-    {
-      last_move_millis = millis();
-      Serial.printf("Inside");
-      if(!strcmp(value, "forward"))
-      {
-        Serial.printf("Forward");
-        //res = "move forward";
-        //car_status = "f";
-        WheelAct(LOW, HIGH, LOW, HIGH);
-        
-      }
-      else if(!strcmp(value, "back"))
-      {
-        Serial.printf("Backward");
-        //res = "move backward";
-        //car_status = "b";
-        WheelAct(HIGH, LOW, HIGH, LOW);
-
-      }
-      else if(!strcmp(value, "left"))
-      {
-        Serial.println("Left");
-        //res = "move left";
-        //car_status = "l";
-        WheelAct(HIGH, LOW, LOW, HIGH);
-
-      }
-      else if(!strcmp(value, "fleft"))
-      {
-        Serial.println("F-Left");
-        //res = "move left";
-        //car_status = "l";
-        
-        WheelAct(LOW, HIGH, HIGH, HIGH);
-
-      }
-      else if(!strcmp(value, "bleft"))
-      {
-        Serial.println("B-Left");
-        //res = "move left";
-        //car_status = "l";
-        
-        WheelAct(HIGH, LOW, HIGH, HIGH);
-
-      }
-      else if(!strcmp(value, "right"))
-      {
-        Serial.println("Right");
-        //res = "move right";
-        //car_status = "r";
-        WheelAct(LOW, HIGH, HIGH, LOW);
-
-      }
-      else if(!strcmp(value, "fright"))
-      {
-        Serial.println("H-Right");
-        //res = "move right";
-        //car_status = "r";
-        WheelAct(HIGH, HIGH, LOW, HIGH);
-
-      }
-      else if(!strcmp(value, "bright"))
-      {
-        Serial.println("H-Right");
-        //res = "move right";
-        //car_status = "r";
-        WheelAct(HIGH, HIGH, HIGH, LOW);
-
-      }
-      else if(!strcmp(value, "stop"))
-      {
-        Serial.println("Stop");
-        //res = "stop";
-        //car_status = "s";
-        WheelAct(HIGH, HIGH, HIGH, HIGH);
-
-      }
-      else if(!strcmp(value, "light_on"))
-      {
-        Serial.println("Light on");
-        
-        digitalWrite(led, HIGH);
-        
-
-      }
-      else if(!strcmp(value, "light_off"))
-      {
-        Serial.println("light off");
-       
-        digitalWrite(led, LOW);
-
-      }
-    }
-    
-  
-    //else {
-        //res = '';
-    //}
-
-   
-
-    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
-    return httpd_resp_send(req, NULL, 0);  
 }
 
 void startCameraServer(){
@@ -672,16 +626,24 @@ void startCameraServer(){
         .user_ctx  = NULL
     };
 
-    httpd_uri_t car_uri = {
-        .uri       = "/car",
-        .method    = HTTP_GET,
-        .handler   = car_handler,
-        .user_ctx  = NULL
-    };
 
+    ra_filter_init(&ra_filter, 20);
     
+    mtmn_config.type = FAST;
+    mtmn_config.min_face = 80;
+    mtmn_config.pyramid = 0.707;
+    mtmn_config.pyramid_times = 4;
+    mtmn_config.p_threshold.score = 0.6;
+    mtmn_config.p_threshold.nms = 0.7;
+    mtmn_config.p_threshold.candidate_number = 20;
+    mtmn_config.r_threshold.score = 0.7;
+    mtmn_config.r_threshold.nms = 0.7;
+    mtmn_config.r_threshold.candidate_number = 10;
+    mtmn_config.o_threshold.score = 0.7;
+    mtmn_config.o_threshold.nms = 0.7;
+    mtmn_config.o_threshold.candidate_number = 1;
     
-   
+    face_id_init(&id_list, FACE_ID_SAVE_NUMBER, ENROLL_CONFIRM_TIMES);
     
     Serial.printf("Starting web server on port: '%d'\n", config.server_port);
     if (httpd_start(&camera_httpd, &config) == ESP_OK) {
@@ -689,7 +651,6 @@ void startCameraServer(){
         httpd_register_uri_handler(camera_httpd, &cmd_uri);
         httpd_register_uri_handler(camera_httpd, &status_uri);
         httpd_register_uri_handler(camera_httpd, &capture_uri);
-        httpd_register_uri_handler(camera_httpd, &car_uri);
     }
 
     config.server_port += 1;
