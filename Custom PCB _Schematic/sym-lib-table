@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name adc)(type Legacy)(uri C:/Users/Kostas/Desktop/kicad-libs-master/kicad-libs/schematics/ADC/adc.lib)(options "")(descr ""))
+  (lib (name analog)(type Legacy)(uri C:/Users/Kostas/Desktop/kicad-libs-master/kicad-libs/schematics/analog/analog.lib)(options "")(descr ""))
+  (lib (name L9110)(type Legacy)(uri C:/Users/Kostas/Desktop/KiCad-parts-master/KiCad-parts-master/library/L9110.lib)(options "")(descr ""))
+  (lib (name Circuit-Thesis-rescue)(type Legacy)(uri "${KIPRJMOD}/Circuit Thesis-rescue.lib")(options "")(descr ""))
+)

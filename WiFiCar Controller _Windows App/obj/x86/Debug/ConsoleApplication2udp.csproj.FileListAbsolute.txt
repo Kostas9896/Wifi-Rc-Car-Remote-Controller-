@@ -1,0 +1,98 @@
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.Cache
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+C:\Users\Toro\AppData\Local\Temporary Projects\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+D:\6 Belajar\Riset bersama\180709 Interface Thoyib Remark\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.Cache
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+D:\Riset bersama\180709 Interface Thoyib Remark 600\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.Cache
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+D:\Riset bersama\190211 Dianggi\UDP\UDP Ardhuino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.Cache
+D:\Riset bersama\190211 Dianggi\PROGAM\UDP\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\190211 Dianggi\PROGAM\UDP\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\190211 Dianggi\PROGAM\Winform\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\190211 Dianggi\PROGAM\Winform\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.Cache
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+D:\Riset bersama\999999 PENGALMAN\UDP Arduino\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.Cache
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.exe.config
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Controls.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.DebuggerVisualizers (2010).dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Fuzzy.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Genetic.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Imaging.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Imaging.Formats.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Imaging.IPPrototyper.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.MachineLearning.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Math.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Neuro.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Robotics.Lego.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Robotics.Surveyor.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Robotics.TeRK.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.FFMPEG.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.Kinect.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.VFW.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.Ximea.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Vision.dll
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Controls.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Fuzzy.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Genetic.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Imaging.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Imaging.Formats.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.MachineLearning.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Math.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Neuro.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Robotics.Lego.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Robotics.Surveyor.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Robotics.TeRK.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.DirectShow.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.FFMPEG.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.Kinect.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.VFW.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Video.Ximea.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\AForge.Vision.xml
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csprojAssemblyReference.cache
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form1.resources
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Form2.resources
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.Properties.Resources.resources
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.GenerateResource.cache
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.CoreCompileInputs.cache
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.csproj.CopyComplete
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
+C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
