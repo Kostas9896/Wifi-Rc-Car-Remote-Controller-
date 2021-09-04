@@ -45,7 +45,6 @@ namespace ConsoleApplication2udp
            
 
         }
-        
          private void CheckifConnected() 
             {
             int Port = 2020;
