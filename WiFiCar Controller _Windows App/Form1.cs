@@ -41,7 +41,7 @@ namespace ConsoleApplication2udp
             Thread thdUDPServer = new Thread(new ThreadStart(CheckifConnected));
             thdUDPServer.Start();
             Status.Text = "Disconnected";
-            Status.ForeColor = System.Drawing.Color.Red; // Color Change
+            Status.ForeColor = System.Drawing.Color.Red; // Color Change!
            
 
         }
