@@ -31,7 +31,6 @@ namespace ConsoleApplication2udp
         {   
             InitializeComponent();
             stopStream.Visible = false;
-            
             disconnect_button.Visible = false;
             this.AutoScroll = true;
             comboBoxRes.SelectedIndex = 3; // selected by default
