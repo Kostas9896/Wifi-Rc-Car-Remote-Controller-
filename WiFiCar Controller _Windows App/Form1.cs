@@ -24,7 +24,7 @@ namespace ConsoleApplication2udp
         
         MJPEGStream Stream;
         UdpClient udpClient = new UdpClient();
-         IPAddress IP;
+        IPAddress IP;
        
 
         public Form1()
@@ -42,18 +42,12 @@ namespace ConsoleApplication2udp
             Thread thdUDPServer = new Thread(new ThreadStart(CheckifConnected));
             thdUDPServer.Start();
             Status.Text = "Disconnected";
-            Status.ForeColor = System.Drawing.Color.Red;
-            
-
-
-
-
+            Status.ForeColor = System.Drawing.Color.Red; // Color Change
+           
 
         }
         
-        
-
-            private void CheckifConnected() 
+         private void CheckifConnected() 
             {
             int Port = 2020;
 
@@ -162,11 +156,7 @@ namespace ConsoleApplication2udp
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-            
-        }
+        
 
        
 
@@ -195,11 +185,6 @@ namespace ConsoleApplication2udp
 
         }
 
-
-
-
-
-        
 
         private void StopStream_Click(object sender, EventArgs e)
         {

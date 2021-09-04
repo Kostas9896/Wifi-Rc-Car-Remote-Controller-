@@ -96,3 +96,6 @@ C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Cli
 C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.exe
 C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\obj\x86\Debug\ConsoleApplication2udp.pdb
 C:\Users\Kostas\Desktop\ConsoleApplication2udp Client\ConsoleApplication2udp Client\ConsoleApplication2udp\bin\Debug\ConsoleApplication2udp.pdb
+C:\Users\Kostas\Source\Repos\Wifi-Rc-Car-Remote-Controller-\WiFiCar Controller _Windows App\obj\x86\Debug\ConsoleApplication2udp.csproj.AssemblyReference.cache
+C:\Users\Kostas\Source\Repos\Wifi-Rc-Car-Remote-Controller-\WiFiCar Controller _Windows App\obj\x86\Debug\ConsoleApplication2udp.exe
+C:\Users\Kostas\Source\Repos\Wifi-Rc-Car-Remote-Controller-\WiFiCar Controller _Windows App\obj\x86\Debug\ConsoleApplication2udp.pdb
