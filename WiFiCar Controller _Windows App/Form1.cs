@@ -39,7 +39,7 @@ namespace ConsoleApplication2udp
             comboBoxWB.Visible = false;
             WindowState = FormWindowState.Maximized;
             Thread thdUDPServer = new Thread(new ThreadStart(CheckifConnected));
-            thdUDPServer.Start();
+            thdUDPServer.Start(); 
             Status.Text = "Disconnected";
             Status.ForeColor = System.Drawing.Color.Red; // Color Change!
            
